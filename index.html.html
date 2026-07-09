@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>昱通實業股份有限公司｜房屋租賃管理中心</title>
+
+  <style>
+    :root {
+      --yellow: #e6b82e;
+      --yellow-soft: #f6e7b7;
+      --cream: #fbf7ec;
+      --ivory: #fffdf8;
+      --brown: #4f4233;
+      --text: #3d352c;
+      --line: rgba(230, 184, 46, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.9;
+      letter-spacing: 0.08em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 253, 248, 0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 20px;
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+      font-size: 15px;
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 6px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 82px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.52), rgba(0,0,0,0.18)),
+        url("hero.jpg") center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: var(--cream);
+      clip-path: ellipse(75% 55% at 50% 100%);
+    }
+
+    .hero-content {
+      max-width: 1180px;
+      width: 100%;
+      margin: auto;
+      padding: 0 28px;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.9;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 34px;
+      padding: 13px 36px;
+      background: var(--yellow);
+      color: white;
+      border-radius: 999px;
+      font-size: 17px;
+      box-shadow: 0 12px 26px rgba(230,184,46,0.45);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      background: #d6a91d;
+    }
+
+    section {
+      padding: 96px 28px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      font-weight: 500;
+      color: var(--brown);
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--yellow);
+      margin: 14px auto 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-img {
+      height: 430px;
+      border-radius: 18px;
+      background: url("building.jpg") center / cover no-repeat;
+      box-shadow: 0 24px 50px rgba(79, 66, 51, 0.14);
+    }
+
+    .about-text {
+      font-size: 17px;
+      color: #453c32;
+    }
+
+    .about-text p + p {
+      margin-top: 24px;
+    }
+
+    .services {
+      background:
+        radial-gradient(circle at left top, rgba(230,184,46,0.16), transparent 34%),
+        linear-gradient(180deg, #fffaf0, #f7ecd0);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.78);
+      padding: 44px 32px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(79,66,51,0.08);
+      border: 1px solid rgba(255,255,255,0.7);
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 50px rgba(79,66,51,0.14);
+    }
+
+    .icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: var(--yellow-soft);
+      display: grid;
+      place-items: center;
+      font-size: 38px;
+    }
+
+    .service-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--brown);
+      font-weight: 500;
+    }
+
+    .contact {
+      background: #fffaf0;
+      text-align: center;
+    }
+
+    .address-box {
+      max-width: 680px;
+      margin: auto;
+      padding: 28px 34px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 16px 38px rgba(79,66,51,0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-size: 21px;
+      color: var(--brown);
+    }
+
+    .pin {
+      font-size: 34px;
+      color: var(--yellow);
+    }
+
+    footer {
+      background: var(--yellow);
+      color: white;
+      text-align: center;
+      padding: 30px 18px;
+      font-size: 14px;
+    }
+
+    .top-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.88);
+      color: var(--yellow);
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: none;
+    }
+
+    .top-btn.show {
+      display: block;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: 0.8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 14px 20px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        min-height: 88vh;
+        background-position: center;
+      }
+
+      section {
+        padding: 72px 22px;
+      }
+
+      .about-grid,
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img {
+        height: 320px;
+      }
+
+      .about-text {
+        font-size: 16px;
+      }
+
+      .service-card {
+        padding: 36px 26px;
+      }
+
+      .address-box {
+        font-size: 17px;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a href="#home" class="brand">
+        <div class="logo">昱</div>
+        <span>房屋租賃管理中心</span>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#home">首頁</a></li>
+          <li><a href="#about">關於我們</a></li>
+          <li><a href="#services">營業項目</a></li>
+          <li><a href="#contact">公司地址</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content fade">
+        <h1>昱通實業股份有限公司</h1>
+        <p>
+          用心守護日常，延續家的溫度。<br>
+          我們以真誠相伴，隨時等候您安心回家。
+        </p>
+        <a href="#about" class="btn">了解更多</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title fade">
+          <h2>關於我們</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-img fade"></div>
+
+          <div class="about-text fade">
+            <p>
+              我們深信，建築因為有了人的氣息，才真正成為「家」。
+              我們將「有溫度的服務」融入日常的每一個細節中，
+              致力於為每一位住戶打造最深刻的歸屬感。
+            </p>
+
+            <p>
+              從清晨踏出大門時親切的一句早安，到深夜為您點亮的那盞大廳暖燈，
+              我們把每一次的互動都當作對家人的照顧。
+            </p>
+
+            <p>
+              不論是細心核對為您代收的包裹，或是即時協助解決生活中的修繕大小事，
+              我們都在背後默默為您撐起堅實的安全網，讓您生活得絕對安心。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-title fade">
+          <h2>營業項目</h2>
+        </div>
+
+        <div class="service-grid">
+          <div class="service-card fade">
+            <div class="icon">🏠</div>
+            <h3>租賃</h3>
+            <p>提供穩定、安心、具溫度的房屋租賃管理服務。</p>
+          </div>
+
+          <div class="service-card fade">
+            <div class="icon">🏪</div>
+            <h3>店面</h3>
+            <p>協助店面租賃與管理，提升商業空間價值。</p>
+          </div>
+
+          <div class="service-card fade">
+            <div class="icon">🏢</div>
+            <h3>住宅</h3>
+            <p>以細膩服務維護居住品質，讓住戶安心回家。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-title fade">
+          <h2>公司地址</h2>
+        </div>
+
+        <div class="address-box fade">
+          <span class="pin">●</span>
+          <span>台北市大同區太原路4樓之2</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 昱通實業股份有限公司 All Rights Reserved.
+  </footer>
+
+  <button class="top-btn" id="topBtn">↑</button>
+
+  <script>
+    const fadeItems = document.querySelectorAll(".fade");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeItems.forEach(item => observer.observe(item));
+
+    const topBtn = document.getElementById("topBtn");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 500) {
+        topBtn.classList.add("show");
+      } else {
+        topBtn.classList.remove("show");
+      }
+    });
+
+    topBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
+</body>
+</html>
